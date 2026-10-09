@@ -4,7 +4,7 @@ const D=window.COURSE_DATA,E=window.C_EXAMPLES;
 const $=id=>document.getElementById(id);
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const rich=s=>esc(s).replace(/`([^`]+)`/g,'<code dir="ltr">$1</code>');
-const groups=[[0,8],[8,15],[15,23],[23,29]], names=['intro','data','control','loops'];
+const groups=[[0,8],[8,15],[15,23],[23,29]], names=['intro','data','control','module-loops'];
 const isReference=document.body.dataset.page==='reference';
 let language='da';
 try{const saved=localStorage.getItem('ds-language');if(D.locales[saved])language=saved;}catch{}
