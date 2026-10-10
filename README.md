@@ -47,8 +47,9 @@ CodeViz teaches general programming concepts through interactive examples in **C
 8. Functions (standalone interactive lesson)
 9. Pointers (standalone interactive lesson)
 10. Object-Oriented Programming (standalone interactive lesson)
+11. File Handling (standalone interactive lesson)
 
-The four core modules and standalone Arrays/Functions/Pointers/Object-Oriented Programming lessons contain 34 topics and 198 complete selected-language source examples (33 per programming language, excluding exercise solutions). Existing explanations and the Arrays/Switch/Functions/Pointers/Object-Oriented Programming titles and summaries are available in Danish, English, Spanish, French, German, Portuguese, Arabic, Urdu, Hindi and Simplified Chinese. The detailed interactive Arrays and Pointers lessons initially use C and English; Switch and Functions use English with the selected language's own syntax and behavior. The detailed OOP tutorial uses Java syntax, with runnable examples and language-specific notes for all six programming languages. English fallbacks are explicit. Arabic and Urdu use right-to-left prose; code remains left-to-right.
+The four core modules and standalone Arrays/Functions/Pointers/Object-Oriented Programming/File Handling lessons contain 35 topics and 204 complete selected-language source examples (34 per programming language, excluding exercise solutions). Existing explanations and the Arrays/Switch/Functions/Pointers/Object-Oriented Programming/File Handling titles and summaries are available in Danish, English, Spanish, French, German, Portuguese, Arabic, Urdu, Hindi and Simplified Chinese. The detailed interactive Arrays and Pointers lessons initially use C and English; Switch and Functions use English with the selected language's own syntax and behavior. The detailed OOP tutorial uses Java syntax, with runnable examples and language-specific notes for all six programming languages. File Handling explains general file concepts and shows runnable write/read code in all six languages. English fallbacks are explicit. Arabic and Urdu use right-to-left prose; code remains left-to-right.
 
 ## Functions lesson (08)
 
@@ -71,6 +72,12 @@ The pointer lesson assets are `pointers-data.js`, `pointers-core.js` and `pointe
 Open `index.html?lang=en&code=java#oop`, or select **10 Object-Oriented Programming** from the homepage/sidebar. The Java-based tutorial explains classes and objects, abstraction, encapsulation, constructors, inheritance, polymorphism, and the `public`, `private`, and `protected` access levels, including Java's same-package protected rule. Runnable examples use each of the six selected programming languages, and explain where the features differ. In particular, C does not have built-in classes or access modifiers; Python uses access conventions, and JavaScript private `#` fields do not imply a `protected` keyword.
 
 Five knowledge-check questions, browser-local progress, and a practice challenge round out the lesson. The source and explanations distinguish abstractions from instances, construction from ordinary methods, and runtime dispatch from inheritance alone. Lesson assets are `oop-data.js` and `oop-lesson.js`; `tests/oop-examples.test.cjs` compiles/runs examples where toolchains are available, and `tests/browser/oop.spec.cjs` covers course entry, concepts, quiz/progress, mobile layout, and all 60 locale/programming-language combinations.
+
+## File Handling lesson (11)
+
+Open `index.html?lang=en&code=python#file-handling`, or select **11 File Handling** from the homepage/sidebar. The lesson introduces text-file paths and read/write/append modes, explains how to write and read text, and demonstrates how OOP can encapsulate a path and file operations. Runnable examples cover C, C++, Python, Java, JavaScript (Node.js), and C#. It highlights error checking, overwriting, working-directory behavior, character encoding, and reliable resource cleanup. The C example uses `FILE*` rather than classes, and the JavaScript example uses synchronous Node.js I/O only for the short sequential demonstration.
+
+Five quiz questions, browser-local completion/results, and a practice challenge are included. Lesson assets are `file-handling-data.js` and `file-handling-lesson.js`; `tests/file-handling-examples.test.cjs` runs examples on available toolchains and `tests/browser/file-handling.spec.cjs` covers entry/navigation, deep links, quiz/progress, all language examples and interface locales, and editor payloads.
 
 ## Switch statement lesson
 
