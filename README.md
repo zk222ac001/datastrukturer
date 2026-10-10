@@ -45,8 +45,9 @@ CodeViz teaches general programming concepts through interactive examples in **C
 6. Data structures (interactive lessons)
 7. Arrays (standalone interactive lesson)
 8. Functions (standalone interactive lesson)
+9. Pointers (standalone interactive lesson)
 
-The four core modules and standalone Arrays/Functions lessons contain 32 topics and 186 complete source examples (31 per programming language, excluding exercise solutions). Existing explanations and the Arrays/Switch/Functions titles and summaries are available in Danish, English, Spanish, French, German, Portuguese, Arabic, Urdu, Hindi and Simplified Chinese. The detailed interactive Arrays lesson initially uses C and English; Switch and Functions use English with the selected language's own syntax and behavior. English fallbacks are explicit. Arabic and Urdu use right-to-left prose; code remains left-to-right.
+The four core modules and standalone Arrays/Functions/Pointers lessons contain 33 topics and 192 complete selected-language source examples (32 per programming language, excluding exercise solutions). Existing explanations and the Arrays/Switch/Functions/Pointers titles and summaries are available in Danish, English, Spanish, French, German, Portuguese, Arabic, Urdu, Hindi and Simplified Chinese. The detailed interactive Arrays and Pointers lessons initially use C and English; Switch and Functions use English with the selected language's own syntax and behavior. English fallbacks are explicit. Arabic and Urdu use right-to-left prose; code remains left-to-right.
 
 ## Functions lesson (08)
 
@@ -55,6 +56,14 @@ Open `index.html?lang=en&code=c#functions`, or select **08 Functions** from the 
 The bounded factorial simulation accepts 0–6, shows separate invocation frames, highlights selected-language source, and supports Next/Previous/Reset through calls, the base case and unwinding. It is an educational model, not a physical-memory debugger or arbitrary-code interpreter. Five quiz questions reuse the shared engine; completion/results use per-language browser storage with session fallback. Two self-checked exercises include hints/solutions. Random output is validated by range in local tests rather than a fixed answer; C's simple modulo example documents bias and seeding limitations.
 
 New files: `functions-data.js` (translated discovery/fallback text, native examples and notes), `functions-core.js` (pure logical stack trace), `functions-lesson.js` (tutorial/UI), `tests/functions.test.cjs`, and `tests/browser/functions.spec.cjs`. Integration touches `course.js`, `course.css`, `index.html`, `formatting.html` and its legacy alias `c-formatting.html`. Run the local commands above: `npm test` checks stack boundaries and compiles/runs examples, recursion boundary cases and sum solutions on available toolchains; `npm run test:browser` covers 60 locale/language pairs, entry 08, deep links, stack controls, editor/download payloads, quizzes, progress, storage failures and mobile RTL, alongside existing regressions. There is no runtime dependency, backend, or deployment change.
+
+## Pointers lesson (09)
+
+Open `index.html?lang=en&code=c#pointers`, or select **09 Pointers** from the homepage/sidebar. Five sections explain pointer basics, declaration and initialization, reference-like function arguments (and C's pass-by-value rule), pointers and arrays, and dynamic memory allocation including `malloc`, `calloc`, `realloc` and `free`. The C lesson includes runnable samples, two self-checked exercises, a quiz and a step-by-step symbolic memory simulation with an allocation-failure path. It explicitly distinguishes arrays from pointer variables and teaches allocation checks, object lifetime, bounds, and safe `realloc` usage.
+
+Selected-language examples explain the differences: C and C++ have explicit pointers, while Python, Java, JavaScript and C# use their respective managed references, collections or `ref` parameters rather than C-style pointer operations. Examples can be run, copied or downloaded. The detailed tutorial is in English and C; interface summaries are available in all ten course languages, with an explicit fallback for other selected programming languages.
+
+The pointer lesson assets are `pointers-data.js`, `pointers-core.js` and `pointers-lesson.js`; focused model/data tests are in `tests/pointers.test.cjs` and `tests/pointers-examples.test.cjs`, with browser coverage in `tests/browser/pointers.spec.cjs`. `npm test` validates simulations and compiles/runs the available C and selected-language examples.
 
 ## Switch statement lesson
 
