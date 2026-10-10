@@ -49,8 +49,9 @@ CodeViz teaches general programming concepts through interactive examples in **C
 10. Object-Oriented Programming (standalone interactive lesson)
 11. File Handling (standalone interactive lesson)
 12. Exception Handling (standalone interactive lesson)
+13. Unit Testing (standalone interactive lesson)
 
-The four core modules and standalone Arrays/Functions/Pointers/Object-Oriented Programming/File Handling/Exception Handling lessons contain 36 topics and 210 complete selected-language source examples (35 per programming language, excluding exercise solutions). Existing explanations and the Arrays/Switch/Functions/Pointers/Object-Oriented Programming/File Handling/Exception Handling titles and summaries are available in Danish, English, Spanish, French, German, Portuguese, Arabic, Urdu, Hindi and Simplified Chinese. The detailed interactive Arrays and Pointers lessons initially use C and English; Switch and Functions use English with the selected language's own syntax and behavior. The detailed OOP tutorial uses Java syntax, with runnable examples and language-specific notes for all six programming languages. File Handling explains general file concepts and shows runnable write/read code in all six languages. Exception Handling compares language mechanisms and demonstrates each language's error-reporting approach. English fallbacks are explicit. Arabic and Urdu use right-to-left prose; code remains left-to-right.
+The four core modules and standalone Arrays/Functions/Pointers/Object-Oriented Programming/File Handling/Exception Handling/Unit Testing lessons contain 37 topics and 216 complete selected-language source examples (36 per programming language, excluding exercise solutions). Existing explanations and the Arrays/Switch/Functions/Pointers/Object-Oriented Programming/File Handling/Exception Handling/Unit Testing titles and summaries are available in Danish, English, Spanish, French, German, Portuguese, Arabic, Urdu, Hindi and Simplified Chinese. The detailed interactive Arrays and Pointers lessons initially use C and English; Switch and Functions use English with the selected language's own syntax and behavior. The detailed OOP tutorial uses Java syntax, with runnable examples and language-specific notes for all six programming languages. File Handling explains general file concepts and shows runnable write/read code in all six languages. Exception Handling compares language mechanisms and demonstrates each language's error-reporting approach. Unit Testing introduces assertions, Arrange–Act–Assert, isolation and test doubles, with runnable checks in all six languages. English fallbacks are explicit. Arabic and Urdu use right-to-left prose; code remains left-to-right.
 
 ## Functions lesson (08)
 
@@ -85,6 +86,12 @@ Five quiz questions, browser-local completion/results, and a practice challenge 
 Open `index.html?lang=en&code=python#exception-handling`, or select **12 Exception Handling** from the homepage/sidebar. The lesson explains errors and exceptions, throwing and propagation, specific catch/except handlers, cleanup, and recovery practices. Runnable examples demonstrate all six language tracks. C does not have built-in exceptions or try/catch, so its example explicitly checks an error status; C++, Python, Java, JavaScript and C# demonstrate their respective exception mechanisms. The lesson also discusses Java checked exceptions, asynchronous JavaScript errors, and resource cleanup.
 
 Five quiz questions, browser-local completion/results, and a practice challenge are included. Lesson assets are `exception-handling-data.js` and `exception-handling-lesson.js`; `tests/exception-handling-examples.test.cjs` runs examples on available toolchains and `tests/browser/exception-handling.spec.cjs` covers navigation, concepts, quiz/progress, all language examples, locale fallback and editor payloads.
+
+## Unit Testing lesson (13)
+
+Open `index.html?lang=en&code=python#unit-testing`, or select **13 Unit Testing** from the homepage/sidebar. The lesson introduces focused unit tests, Arrange–Act–Assert, assertions and useful test cases, isolation and test doubles, coverage limitations, and maintainable test practices. Runnable examples check even and odd inputs for all six programming languages and explain common framework choices and assertion caveats for each.
+
+Five quiz questions, browser-local completion/results, and a practice challenge are included. Lesson assets are `unit-testing-data.js` and `unit-testing-lesson.js`; `tests/unit-testing-examples.test.cjs` runs checks on available toolchains and `tests/browser/unit-testing.spec.cjs` covers entry/navigation, concepts, quiz/progress, all language examples and interface locales, and editor payloads.
 
 ## Switch statement lesson
 
