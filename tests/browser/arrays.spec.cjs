@@ -1,7 +1,7 @@
 const { test, expect } = require('@playwright/test');
 test('array initialization, safe access, updates and traversal navigation', async ({ page }) => {
   await page.goto('/index.html?lang=en&code=c#arrays');
-  await expect(page.locator('#arrays h2')).toHaveText('Arrays');
+  await expect(page.locator('#arrays h1')).toHaveText('Arrays');
   const root = page.locator('#arrays-explorer');
   await expect(root.locator('.array-cell')).toHaveCount(5);
   await root.locator('[data-array-index="2"]').click();
@@ -57,11 +57,13 @@ test('arrays appear on the homepage and preserve six programming languages in te
     for (const code of ['c', 'cpp', 'python', 'java', 'javascript', 'csharp']) {
       await page.goto(`/index.html?lang=${locale}&code=${code}`);
       const link = page.locator('.cards a[href$="#arrays"]');
-      await expect(link).toHaveCount(1); await link.click();
+      await expect(link).toHaveCount(1); await expect(link.locator('xpath=ancestor::article')).toContainText('07'); await link.click();
       await expect(page.locator('#arrays')).toBeVisible();
+      await expect(page.locator('#arrays .topic-no')).toHaveText('07');
+      await expect(page.locator('#content .lab')).toHaveCount(0);
       await expect(page.locator('#arrays-explorer')).toHaveCount(code === 'c' ? 1 : 0);
       await expect(page.locator('#arrays-quiz')).toHaveCount(code === 'c' ? 1 : 0);
-      await expect(page.locator('#sidebar .nav-topic')).toHaveAttribute('aria-current', 'page');
+      await expect(page.locator('#sidebar a[href$="#arrays"]')).toHaveAttribute('aria-current', 'page');
       await expect(page.locator('#sidebar [aria-current=page]')).toHaveCount(1);
       if (locale !== 'en' || code !== 'c') await expect(page.locator('#arrays .notice')).toBeVisible();
       await page.evaluate(() => { window.CodeRunner.open = p => { window.testArraysPayload = p; }; });
@@ -71,6 +73,8 @@ test('arrays appear on the homepage and preserve six programming languages in te
       expect((await download).suggestedFilename()).toBe({ c: 'arrays.c', cpp: 'arrays.cpp', python: 'arrays.py', java: 'Main.java', javascript: 'arrays.js', csharp: 'Program.cs' }[code]);
     }
   }
+  await page.goto('/index.html?lang=en&code=c#data');
+  await expect(page.locator('#arrays')).toHaveCount(0);
   expect(errors).toEqual([]);
 });
 test('array lesson has clear RTL fallback, mobile layout and section routes', async ({ page }) => {
@@ -82,7 +86,7 @@ test('array lesson has clear RTL fallback, mobile layout and section routes', as
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
   await page.locator('.arrays-lesson nav').getByRole('link', { name: 'Quiz', exact: true }).click();
   await expect(page.locator('#arrays-quiz')).toBeVisible();
-  expect(await page.evaluate(() => window.courseState().module)).toBe(1);
+  expect(await page.evaluate(() => window.courseState().module)).toBe(6);
 });
 test('array solutions use existing editor and blocked storage falls back to session memory', async ({ page }) => {
   await page.addInitScript(() => Object.defineProperty(window, 'localStorage', { get() { throw Error('blocked'); } }));

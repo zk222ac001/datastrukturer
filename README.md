@@ -43,12 +43,13 @@ CodeViz teaches general programming concepts through interactive examples in **C
 4. Loops
 5. Escape characters & format specifiers (reference)
 6. Data structures (interactive lessons)
+7. Arrays (standalone interactive lesson)
 
-The four modules contain 30 topics, including Arrays in Data types and variables, and 150 complete source examples (25 per programming language). Existing explanations and the Arrays title/summary are available in Danish, English, Spanish, French, German, Portuguese, Arabic, Urdu, Hindi and Simplified Chinese. The detailed interactive Arrays lesson initially uses C and English, with an explicit language fallback. Arabic and Urdu use right-to-left prose; code remains left-to-right.
+The four core modules and the standalone Arrays lesson contain 30 topics and 150 complete source examples (25 per programming language). Existing explanations and the Arrays title/summary are available in Danish, English, Spanish, French, German, Portuguese, Arabic, Urdu, Hindi and Simplified Chinese. The detailed interactive Arrays lesson initially uses C and English, with an explicit language fallback. Arabic and Urdu use right-to-left prose; code remains left-to-right.
 
 ## Arrays lesson
 
-Open `index.html?lang=en&code=c#arrays`, or select Arrays from the homepage’s Data types and variables list or sidebar. The lesson follows the conceptual sequence in [GeeksforGeeks: Arrays in C](https://www.geeksforgeeks.org/c/c-arrays/) using original text, examples and code-based diagrams. Technical details were checked against the C11 draft and Microsoft’s C documentation. It covers declaration, initialization, zero-fill, indexing, updates, traversal, element count, symbolic memory offsets, common mistakes, practical uses, and an introduction to two-dimensional arrays. It does not assume that `int` is four bytes or apply an array’s `sizeof` count formula to a function parameter adjusted to a pointer.
+Open `index.html?lang=en&code=c#arrays`, or select Arrays as entry 07 from the homepage or sidebar. The lesson follows the conceptual sequence in [GeeksforGeeks: Arrays in C](https://www.geeksforgeeks.org/c/c-arrays/) using original text, examples and code-based diagrams. Technical details were checked against the C11 draft and Microsoft’s C documentation. It covers declaration, initialization, zero-fill, indexing, updates, traversal, element count, symbolic memory offsets, common mistakes, practical uses, and an introduction to two-dimensional arrays. It does not assume that `int` is four bytes or apply an array’s `sizeof` count formula to a function parameter adjusted to a pointer.
 
 The simulation models five bounded integer cells. Choose full, partial or uninitialized-local initialization, inspect/update an index, and step forward or backward through forward/reverse traversal. Unknown values use `?`; the model blocks uninitialized/out-of-range reads rather than executing unsafe C or inventing an output. Changing the array or traversal direction resets the trace. The diagram shows symbolic offsets, not real memory addresses.
 
