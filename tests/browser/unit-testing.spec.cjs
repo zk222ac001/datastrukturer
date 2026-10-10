@@ -14,6 +14,19 @@ test('Unit Testing is entry 13 and explains core test concepts', async ({ page }
   await expect(page.locator('#unit-testing-2')).toContainText('Arrange');
   await expect(page.locator('#unit-testing-4')).toContainText('test double');
   await expect(page.locator('#unit-testing-3')).toContainText('Coverage');
+  const aaa = page.locator('[data-aaa-visual]');
+  await aaa.locator('[data-aaa-step="act"]').click();
+  await expect(aaa.locator('[data-aaa-step="act"]')).toHaveAttribute('aria-pressed', 'true');
+  await expect(aaa.locator('[data-aaa-node="act"]')).toHaveAttribute('data-active', '');
+  await expect(aaa.locator('[data-aaa-title]')).toHaveText('Act: call the behavior');
+  await aaa.locator('[data-aaa-step="assert"]').click();
+  await expect(aaa.locator('[data-aaa-result]')).toHaveText('PASS');
+  const progress = page.locator('.lesson-progress progress');
+  await expect(progress).toHaveAttribute('max', '7');
+  await expect(progress).toHaveJSProperty('value', 1);
+  await page.locator('.module-outline a[href="#unit-testing-4"]').click();
+  await expect(page.locator('.module-outline a[href="#unit-testing-4"]')).toHaveAttribute('aria-current', 'step');
+  await expect(progress).toHaveJSProperty('value', 4);
 
   const quiz = page.locator('#unit-testing-quiz');
   const answers = await page.evaluate(() => window.UNIT_TESTING_DATA.questions.map(question => question.answer));
@@ -57,4 +70,19 @@ test('Unit Testing is reachable from reference pages and section deep links', as
   }
   await page.goto('/index.html?lang=en&code=python#unit-testing-practice');
   await expect(page.locator('#unit-testing-practice')).toBeVisible();
+});
+
+test('Course workspace remains readable and scroll-safe on mobile', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto('/index.html?lang=ur&code=python#unit-testing');
+  await expect(page.locator('html')).toHaveAttribute('dir', 'rtl');
+  await expect(page.locator('.unit-testing-lesson')).toHaveAttribute('dir', 'ltr');
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+  await expect(page.locator('.lesson-progress progress')).toBeVisible();
+  await page.goto('/index.html?lang=ur&code=python#unit-testing-2');
+  const headingOffsets = await page.evaluate(() => ({
+    headingTop: document.querySelector('#unit-testing-2 h2').getBoundingClientRect().top,
+    navigationBottom: document.querySelector('aside').getBoundingClientRect().bottom
+  }));
+  expect(headingOffsets.headingTop).toBeGreaterThanOrEqual(headingOffsets.navigationBottom);
 });
