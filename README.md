@@ -47,3 +47,5 @@ The fruit classifier is a deliberately limited nearest-centroid teaching model t
 The compiler integration follows https://onecompiler.com/apis/embed-editor and the provider’s https://onecompiler.github.io/editor-embed-demo/complex-editor.html example. Messages use an exact destination origin, and incoming messages must match both the OneCompiler origin and the active iframe window. No source is executed in the course page’s JavaScript context. External service availability, compiler versions and editor language are controlled by OneCompiler.
 
 Regression checks cover 240 module views and 720 format demonstrations. Additional checks cover ten translated expanded modules, all five simulations and boundary cases, sixty language/locale compiler payloads, filenames, STDIN, origin validation and editor cleanup.
+
+Live browser verification: Hello World executed successfully in C, C++, Python, Java, JavaScript and C#. The JavaScript input example also produced its expected result using the supplied STDIN in I/O mode. For programs reading input, select I/O before Run; the provider may otherwise use its interactive console.
