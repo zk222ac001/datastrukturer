@@ -48,8 +48,9 @@ CodeViz teaches general programming concepts through interactive examples in **C
 9. Pointers (standalone interactive lesson)
 10. Object-Oriented Programming (standalone interactive lesson)
 11. File Handling (standalone interactive lesson)
+12. Exception Handling (standalone interactive lesson)
 
-The four core modules and standalone Arrays/Functions/Pointers/Object-Oriented Programming/File Handling lessons contain 35 topics and 204 complete selected-language source examples (34 per programming language, excluding exercise solutions). Existing explanations and the Arrays/Switch/Functions/Pointers/Object-Oriented Programming/File Handling titles and summaries are available in Danish, English, Spanish, French, German, Portuguese, Arabic, Urdu, Hindi and Simplified Chinese. The detailed interactive Arrays and Pointers lessons initially use C and English; Switch and Functions use English with the selected language's own syntax and behavior. The detailed OOP tutorial uses Java syntax, with runnable examples and language-specific notes for all six programming languages. File Handling explains general file concepts and shows runnable write/read code in all six languages. English fallbacks are explicit. Arabic and Urdu use right-to-left prose; code remains left-to-right.
+The four core modules and standalone Arrays/Functions/Pointers/Object-Oriented Programming/File Handling/Exception Handling lessons contain 36 topics and 210 complete selected-language source examples (35 per programming language, excluding exercise solutions). Existing explanations and the Arrays/Switch/Functions/Pointers/Object-Oriented Programming/File Handling/Exception Handling titles and summaries are available in Danish, English, Spanish, French, German, Portuguese, Arabic, Urdu, Hindi and Simplified Chinese. The detailed interactive Arrays and Pointers lessons initially use C and English; Switch and Functions use English with the selected language's own syntax and behavior. The detailed OOP tutorial uses Java syntax, with runnable examples and language-specific notes for all six programming languages. File Handling explains general file concepts and shows runnable write/read code in all six languages. Exception Handling compares language mechanisms and demonstrates each language's error-reporting approach. English fallbacks are explicit. Arabic and Urdu use right-to-left prose; code remains left-to-right.
 
 ## Functions lesson (08)
 
@@ -78,6 +79,12 @@ Five knowledge-check questions, browser-local progress, and a practice challenge
 Open `index.html?lang=en&code=python#file-handling`, or select **11 File Handling** from the homepage/sidebar. The lesson introduces text-file paths and read/write/append modes, explains how to write and read text, and demonstrates how OOP can encapsulate a path and file operations. Runnable examples cover C, C++, Python, Java, JavaScript (Node.js), and C#. It highlights error checking, overwriting, working-directory behavior, character encoding, and reliable resource cleanup. The C example uses `FILE*` rather than classes, and the JavaScript example uses synchronous Node.js I/O only for the short sequential demonstration.
 
 Five quiz questions, browser-local completion/results, and a practice challenge are included. Lesson assets are `file-handling-data.js` and `file-handling-lesson.js`; `tests/file-handling-examples.test.cjs` runs examples on available toolchains and `tests/browser/file-handling.spec.cjs` covers entry/navigation, deep links, quiz/progress, all language examples and interface locales, and editor payloads.
+
+## Exception Handling lesson (12)
+
+Open `index.html?lang=en&code=python#exception-handling`, or select **12 Exception Handling** from the homepage/sidebar. The lesson explains errors and exceptions, throwing and propagation, specific catch/except handlers, cleanup, and recovery practices. Runnable examples demonstrate all six language tracks. C does not have built-in exceptions or try/catch, so its example explicitly checks an error status; C++, Python, Java, JavaScript and C# demonstrate their respective exception mechanisms. The lesson also discusses Java checked exceptions, asynchronous JavaScript errors, and resource cleanup.
+
+Five quiz questions, browser-local completion/results, and a practice challenge are included. Lesson assets are `exception-handling-data.js` and `exception-handling-lesson.js`; `tests/exception-handling-examples.test.cjs` runs examples on available toolchains and `tests/browser/exception-handling.spec.cjs` covers navigation, concepts, quiz/progress, all language examples, locale fallback and editor payloads.
 
 ## Switch statement lesson
 
