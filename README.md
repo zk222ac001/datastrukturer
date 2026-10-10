@@ -1,5 +1,36 @@
 # CodeViz — Learn programming with Visualization
 
+## Interactive for-loop lesson (first milestone)
+
+Open `index.html?lang=en&code=c#counter` to use the new lesson. It includes an educational step simulation, annotated tutorial and execution table, five questions with immediate explanations, and two C challenges that open in the existing OneCompiler editor. Previous restores the earlier simulated state; Reset returns to the beginning. Apply and reset accepts bounded integer start/end/step values, counts down for negative steps, and supports zero iterations. This is a teaching model of the displayed loop, not a general C interpreter.
+
+The enhanced lesson is initially C and English. Other programming languages retain their existing translated lessons, examples and simulations, with a notice and an explicit link to the C lesson. The ten interface languages and RTL shell remain available. English fallback content is marked `lang="en"` and displayed left-to-right; code is always left-to-right. Existing `#counter`, module URLs, language parameters and GitHub Pages deployment are preserved.
+
+Completion is a student-controlled marker, independent of the quiz score. Only finished quiz attempts save their latest and best scores and attempt count. Progress uses `codeviz-progress-v1` in browser local storage, with no account or personal data. Blocked storage or write failures fall back to page-session memory; clearing working storage resets saved progress. Retrying a quiz clears the current answers but preserves completed attempt history. Challenges are self-checked against expected output; there is no automatic grading. OneCompiler receives code only when the editor is opened, as before.
+
+Changed and added files:
+
+- `learning-core.js`: reusable pure loop trace, quiz model and versioned progress store; also loadable by Node tests.
+- `learning-ui.js`: reusable, scoped multiple-choice quiz renderer with keyboard focus and feedback.
+- `for-lesson-data.js`: five C questions, exercise starters, hints and solutions.
+- `for-lesson.js`: English tutorial, simulation controls, language fallback and existing editor integration.
+- `course.js`, `course.css`, `index.html`: narrow lesson integration, section routes, responsive styling and script loading.
+- `package.json`, `package-lock.json`, `.gitignore`, `playwright.config.cjs`, `tests/`: development-only test tooling. There are no runtime dependencies or build requirements.
+
+Local testing (Node.js 20+ for the browser test tooling):
+
+```sh
+npm ci
+npm test
+npx playwright install chromium
+npm run test:browser
+npm run serve
+```
+
+The last command serves the site at `http://127.0.0.1:4173`; open `/index.html?lang=en&code=c#counter`. Browser tests start and stop their own local server. They cover forward/backward/reset simulation, boundaries, quiz retry/scoring, progress/reload/clearing, blocked storage, language fallbacks, RTL/mobile layout, 240 existing module views and 720 formatting demonstrations, legacy reference links, original simulations, downloads, and the lazy-loaded editor. Editor browser tests intercept the external provider and verify integration; they do not claim to test OneCompiler uptime or remotely execute C. The separate C source test compiles and executes both exercise solutions and representative simulated loops if GCC is installed (otherwise it reports a skip).
+
+Manual checks: navigate with Tab, select quiz answers with arrow keys, explore positive/negative/zero-iteration loops, switch both selectors, and run a challenge in the actual OneCompiler editor. No push or deployment is required for local testing; GitHub Pages continues to serve the static files from the existing deployment branch.
+
 Live course: https://zk222ac001.github.io/datastrukturer/
 
 CodeViz teaches general programming concepts through interactive examples in **C, C++, Python, Java, JavaScript and C#**. The programming-language selector changes code, downloads, run instructions, arithmetic semantics and the formatting reference. The interface language is a separate choice.
