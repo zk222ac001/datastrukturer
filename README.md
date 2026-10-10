@@ -44,8 +44,17 @@ CodeViz teaches general programming concepts through interactive examples in **C
 5. Escape characters & format specifiers (reference)
 6. Data structures (interactive lessons)
 7. Arrays (standalone interactive lesson)
+8. Functions (standalone interactive lesson)
 
-The four core modules and the standalone Arrays lesson contain 31 topics and 156 complete source examples (26 per programming language). Existing explanations and the Arrays/Switch titles and summaries are available in Danish, English, Spanish, French, German, Portuguese, Arabic, Urdu, Hindi and Simplified Chinese. The detailed interactive Arrays lesson initially uses C and English; the Switch lesson uses English with the selected language's own syntax and behavior. English fallbacks are explicit. Arabic and Urdu use right-to-left prose; code remains left-to-right.
+The four core modules and standalone Arrays/Functions lessons contain 32 topics and 186 complete source examples (31 per programming language, excluding exercise solutions). Existing explanations and the Arrays/Switch/Functions titles and summaries are available in Danish, English, Spanish, French, German, Portuguese, Arabic, Urdu, Hindi and Simplified Chinese. The detailed interactive Arrays lesson initially uses C and English; Switch and Functions use English with the selected language's own syntax and behavior. English fallbacks are explicit. Arabic and Urdu use right-to-left prose; code remains left-to-right.
+
+## Functions lesson (08)
+
+Open `index.html?lang=en&code=c#functions`, or select **08 Functions** from the homepage/sidebar. Eight linked sections explain functions; prototypes, declarations, definitions and calls; logical call stacks/frames; argument passing; pseudo-random generators; storage/lifetime; scope; and recursion. The selected language has five runnable examples with editor/copy/download controls. C prototypes and C11 storage classes are explicitly distinguished from other languages' syntax; C passes pointers by value, C++ and C# support reference parameters, while Java, Python and JavaScript distinguish shared-object mutation from rebinding a caller variable.
+
+The bounded factorial simulation accepts 0–6, shows separate invocation frames, highlights selected-language source, and supports Next/Previous/Reset through calls, the base case and unwinding. It is an educational model, not a physical-memory debugger or arbitrary-code interpreter. Five quiz questions reuse the shared engine; completion/results use per-language browser storage with session fallback. Two self-checked exercises include hints/solutions. Random output is validated by range in local tests rather than a fixed answer; C's simple modulo example documents bias and seeding limitations.
+
+New files: `functions-data.js` (translated discovery/fallback text, native examples and notes), `functions-core.js` (pure logical stack trace), `functions-lesson.js` (tutorial/UI), `tests/functions.test.cjs`, and `tests/browser/functions.spec.cjs`. Integration touches `course.js`, `course.css`, `index.html`, `formatting.html` and its legacy alias `c-formatting.html`. Run the local commands above: `npm test` checks stack boundaries and compiles/runs examples, recursion boundary cases and sum solutions on available toolchains; `npm run test:browser` covers 60 locale/language pairs, entry 08, deep links, stack controls, editor/download payloads, quizzes, progress, storage failures and mobile RTL, alongside existing regressions. There is no runtime dependency, backend, or deployment change.
 
 ## Switch statement lesson
 
