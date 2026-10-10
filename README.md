@@ -41,6 +41,8 @@ CodeViz teaches general programming concepts through interactive examples in **C
 2. Data types and variables
 3. Program control structures
 4. Loops
+5. Escape characters & format specifiers (reference)
+6. Data structures (interactive lessons)
 
 The four modules contain 29 topics and 144 complete source examples (24 per programming language). Explanations are available in Danish, English, Spanish, French, German, Portuguese, Arabic, Urdu, Hindi and Simplified Chinese. Arabic and Urdu use right-to-left prose; code remains left-to-right.
 
