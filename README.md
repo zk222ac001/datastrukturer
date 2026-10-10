@@ -46,8 +46,9 @@ CodeViz teaches general programming concepts through interactive examples in **C
 7. Arrays (standalone interactive lesson)
 8. Functions (standalone interactive lesson)
 9. Pointers (standalone interactive lesson)
+10. Object-Oriented Programming (standalone interactive lesson)
 
-The four core modules and standalone Arrays/Functions/Pointers lessons contain 33 topics and 192 complete selected-language source examples (32 per programming language, excluding exercise solutions). Existing explanations and the Arrays/Switch/Functions/Pointers titles and summaries are available in Danish, English, Spanish, French, German, Portuguese, Arabic, Urdu, Hindi and Simplified Chinese. The detailed interactive Arrays and Pointers lessons initially use C and English; Switch and Functions use English with the selected language's own syntax and behavior. English fallbacks are explicit. Arabic and Urdu use right-to-left prose; code remains left-to-right.
+The four core modules and standalone Arrays/Functions/Pointers/Object-Oriented Programming lessons contain 34 topics and 198 complete selected-language source examples (33 per programming language, excluding exercise solutions). Existing explanations and the Arrays/Switch/Functions/Pointers/Object-Oriented Programming titles and summaries are available in Danish, English, Spanish, French, German, Portuguese, Arabic, Urdu, Hindi and Simplified Chinese. The detailed interactive Arrays and Pointers lessons initially use C and English; Switch and Functions use English with the selected language's own syntax and behavior. The detailed OOP tutorial uses Java syntax, with runnable examples and language-specific notes for all six programming languages. English fallbacks are explicit. Arabic and Urdu use right-to-left prose; code remains left-to-right.
 
 ## Functions lesson (08)
 
@@ -64,6 +65,12 @@ Open `index.html?lang=en&code=c#pointers`, or select **09 Pointers** from the ho
 Selected-language examples explain the differences: C and C++ have explicit pointers, while Python, Java, JavaScript and C# use their respective managed references, collections or `ref` parameters rather than C-style pointer operations. Examples can be run, copied or downloaded. The detailed tutorial is in English and C; interface summaries are available in all ten course languages, with an explicit fallback for other selected programming languages.
 
 The pointer lesson assets are `pointers-data.js`, `pointers-core.js` and `pointers-lesson.js`; focused model/data tests are in `tests/pointers.test.cjs` and `tests/pointers-examples.test.cjs`, with browser coverage in `tests/browser/pointers.spec.cjs`. `npm test` validates simulations and compiles/runs the available C and selected-language examples.
+
+## Object-Oriented Programming lesson (10)
+
+Open `index.html?lang=en&code=java#oop`, or select **10 Object-Oriented Programming** from the homepage/sidebar. The Java-based tutorial explains classes and objects, abstraction, encapsulation, constructors, inheritance, polymorphism, and the `public`, `private`, and `protected` access levels, including Java's same-package protected rule. Runnable examples use each of the six selected programming languages, and explain where the features differ. In particular, C does not have built-in classes or access modifiers; Python uses access conventions, and JavaScript private `#` fields do not imply a `protected` keyword.
+
+Five knowledge-check questions, browser-local progress, and a practice challenge round out the lesson. The source and explanations distinguish abstractions from instances, construction from ordinary methods, and runtime dispatch from inheritance alone. Lesson assets are `oop-data.js` and `oop-lesson.js`; `tests/oop-examples.test.cjs` compiles/runs examples where toolchains are available, and `tests/browser/oop.spec.cjs` covers course entry, concepts, quiz/progress, mobile layout, and all 60 locale/programming-language combinations.
 
 ## Switch statement lesson
 
