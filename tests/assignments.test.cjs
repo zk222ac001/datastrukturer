@@ -37,6 +37,8 @@ test('assignment labels cover all interface languages', () => {
     assert.ok(translation.task);
     assert.ok(translation.expected);
     assert.ok(translation.open);
+    assert.ok(translation.solution);
+    assert.ok(translation.hideSolution);
     assert.ok(translation.note);
   }
 });

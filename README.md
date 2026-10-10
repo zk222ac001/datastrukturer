@@ -55,7 +55,7 @@ The four core modules and standalone Arrays/Functions/Pointers/Object-Oriented P
 
 ## Coding assignments
 
-Every one of the 84 course topics and detailed lesson sections has a hands-on assignment with an expected outcome. The separate Data Structures classroom adds an assignment to each of its seven chapters. Open an assignment's example in the existing OneCompiler editor, edit and run it, then compare its output or behavior with the expected outcome shown in the lesson. The selected programming language is used for course assignment starters; Data Structures assignments open the chapter's current example. Input is prefilled where applicable.
+Every one of the 84 course topics and detailed lesson sections has a hands-on assignment with an expected outcome. The separate Data Structures classroom adds an assignment to each of its seven chapters. Open an assignment's example in the existing OneCompiler editor, edit and run it, then compare its output or behavior with the expected outcome shown in the lesson. The selected programming language is used for course assignment starters and the expandable **Solution of code** panel; Data Structures assignments show the chapter's complete example. Input is prefilled where applicable.
 
 Assignments are self-checked: CodeViz does not automatically grade submissions or receive execution results from OneCompiler. Assignment instructions and expected outcomes are in English. The focused coverage is in `tests/assignments.test.cjs` and `tests/browser/assignments.spec.cjs`; run it with `node --test tests/assignments.test.cjs` and `npx playwright test tests/browser/assignments.spec.cjs`.
 

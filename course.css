@@ -141,5 +141,8 @@ th{background:#f3f6fb}
 .topic-assignment .controls{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
 .topic-assignment .controls .small{max-width:560px;margin:0}
 .topic-assignment button{min-height:42px}
+.assignment-solution{margin-top:16px}
+.assignment-solution h3{margin-bottom:8px}
+.assignment-solution pre{max-width:100%;margin:0;padding:14px;border:1px solid #dbe4f1;border-radius:9px;background:#fff;color:#203451;font-size:13px;overflow:auto;white-space:pre}
 @media(max-width:730px){.topic-assignment{padding:16px}.topic-assignment .controls{align-items:flex-start}.topic-assignment .controls .small{flex-basis:100%}}
-@media print{.topic-assignment .controls{display:none}}
+@media print{.topic-assignment .controls{display:none}.assignment-solution[hidden]{display:none}.assignment-solution:not([hidden]){break-inside:avoid}}

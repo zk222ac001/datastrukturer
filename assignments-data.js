@@ -89,16 +89,16 @@
   ];
 
   const labels = {
-    da: ['Kodeopgave', 'Opgave', 'Forventet resultat', 'Åbn startkode i online-editor'],
-    en: ['Coding assignment', 'Task', 'Expected outcome', 'Open starter in online editor'],
-    es: ['Reto de programación', 'Tarea', 'Resultado esperado', 'Abrir código inicial en el editor'],
-    fr: ['Exercice de programmation', 'Consigne', 'Résultat attendu', 'Ouvrir le code de départ dans l’éditeur'],
-    de: ['Programmieraufgabe', 'Aufgabe', 'Erwartetes Ergebnis', 'Startcode im Online-Editor öffnen'],
-    pt: ['Desafio de programação', 'Tarefa', 'Resultado esperado', 'Abrir código inicial no editor'],
-    ar: ['مهمة برمجية', 'المهمة', 'النتيجة المتوقعة', 'فتح الكود الأولي في المحرر'],
-    ur: ['پروگرامنگ اسائنمنٹ', 'کام', 'متوقع نتیجہ', 'ابتدائی کوڈ آن لائن ایڈیٹر میں کھولیں'],
-    hi: ['प्रोग्रामिंग असाइनमेंट', 'कार्य', 'अपेक्षित परिणाम', 'स्टार्टर कोड ऑनलाइन एडिटर में खोलें'],
-    zh: ['编程练习', '任务', '预期结果', '在在线编辑器中打开起始代码']
+    da: ['Kodeopgave', 'Opgave', 'Forventet resultat', 'Åbn startkode i online-editor', 'Vis kodeløsning', 'Skjul kodeløsning'],
+    en: ['Coding assignment', 'Task', 'Expected outcome', 'Open starter in online editor', 'Solution of code', 'Hide solution'],
+    es: ['Reto de programación', 'Tarea', 'Resultado esperado', 'Abrir código inicial en el editor', 'Ver solución de código', 'Ocultar solución'],
+    fr: ['Exercice de programmation', 'Consigne', 'Résultat attendu', 'Ouvrir le code de départ dans l’éditeur', 'Solution du code', 'Masquer la solution'],
+    de: ['Programmieraufgabe', 'Aufgabe', 'Erwartetes Ergebnis', 'Startcode im Online-Editor öffnen', 'Code-Lösung anzeigen', 'Lösung ausblenden'],
+    pt: ['Desafio de programação', 'Tarefa', 'Resultado esperado', 'Abrir código inicial no editor', 'Ver solução do código', 'Ocultar solução'],
+    ar: ['مهمة برمجية', 'المهمة', 'النتيجة المتوقعة', 'فتح الكود الأولي في المحرر', 'عرض حل الكود', 'إخفاء الحل'],
+    ur: ['پروگرامنگ اسائنمنٹ', 'کام', 'متوقع نتیجہ', 'ابتدائی کوڈ آن لائن ایڈیٹر میں کھولیں', 'کوڈ کا حل دکھائیں', 'حل چھپائیں'],
+    hi: ['प्रोग्रामिंग असाइनमेंट', 'कार्य', 'अपेक्षित परिणाम', 'स्टार्टर कोड ऑनलाइन एडिटर में खोलें', 'कोड का समाधान दिखाएँ', 'समाधान छिपाएँ'],
+    zh: ['编程练习', '任务', '预期结果', '在在线编辑器中打开起始代码', '显示代码解答', '隐藏解答']
   };
 
   window.LESSON_ASSIGNMENTS = Object.freeze(Object.fromEntries(
@@ -107,6 +107,7 @@
   window.LESSON_ASSIGNMENT_LABELS = Object.freeze(Object.fromEntries(
     Object.entries(labels).map(([language, values]) => [language, Object.freeze({
       title: values[0], task: values[1], expected: values[2], open: values[3],
+      solution: values[4], hideSolution: values[5],
       note: language === 'en'
         ? 'Edit the starter, run it in OneCompiler, and compare the result with this check.'
         : 'Assignment instructions and expected outcomes are in English.'

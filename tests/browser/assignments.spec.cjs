@@ -45,10 +45,35 @@ test('assignment starters open in the selected language with supplied input and 
   }
 });
 
+test('solution controls reveal complete code in the selected programming language', async ({ page }) => {
+  for (const code of ['c', 'cpp', 'python', 'java', 'javascript', 'csharp']) {
+    await page.goto(`/index.html?lang=en&code=${code}#hello`);
+    const assignment = page.locator('[data-topic-assignment="hello"]');
+    const solutionButton = assignment.locator('[data-assignment-solution="hello"]');
+    const solution = assignment.locator('#assignment-solution-hello');
+    await expect(solutionButton).toHaveAttribute('aria-expanded', 'false');
+    await solutionButton.click();
+    await expect(solutionButton).toHaveAttribute('aria-expanded', 'true');
+    await expect(solution).toBeVisible();
+    const displayedCode = await solution.locator('code').textContent();
+    const expectedCode = await page.evaluate(() => window.LANGUAGE_EXAMPLES[window.location.search.match(/code=([^&]+)/)[1]].hello.code);
+    expect(displayedCode.trimEnd()).toBe(expectedCode.trimEnd());
+    await solutionButton.click();
+    await expect(solution).toBeHidden();
+
+    await page.goto(`/index.html?lang=en&code=${code}#intro`);
+    const formattingAssignment = page.locator('[data-topic-assignment="formatting"]');
+    await formattingAssignment.locator('[data-assignment-solution="formatting"]').click();
+    const formattingCode = await formattingAssignment.locator('#assignment-solution-formatting code').textContent();
+    expect(formattingCode).toContain('12.5');
+    expect(formattingCode).toContain('Price:');
+  }
+});
+
 test('data structure lessons include editable, runnable assignments', async ({ page }) => {
   const errors = [];
   page.on('pageerror', error => errors.push(error.message));
-  await page.goto('/datastrukturer.html?lang=en&code=python');
+  await page.goto('/datastrukturer.html?lang=en&code=python', { waitUntil: 'domcontentloaded' });
   const assignment = page.locator('[data-structure-assignment]');
   await expect(assignment).toHaveCount(1);
   await page.evaluate(() => { window.CodeRunner.open = payload => { window.structureAssignmentPayload = payload; }; });
@@ -64,6 +89,10 @@ test('data structure lessons include editable, runnable assignments', async ({ p
   expect(payload.codeLanguage).toBe('python');
   expect(payload.code).toContain('student');
   expect(payload.label).toContain('Hash Table');
+  const solutionButton = page.locator('[data-structure-assignment-solution="6"]');
+  await solutionButton.click();
+  await expect(page.locator('#structure-solution-6')).toBeVisible();
+  expect(await page.locator('[data-structure-solution-code]').textContent()).toBe(payload.code);
   expect(await page.locator('#nav button').count()).toBe(9);
   for (let index = 7; index < 9; index++) {
     await page.locator('#nav button').nth(index).click();
@@ -78,7 +107,7 @@ test('assignment cards remain accessible and fit a narrow RTL lesson viewport', 
   const assignment = page.locator('[data-topic-assignment="pointers-1"]');
   await expect(assignment).toHaveAttribute('lang', 'en');
   await expect(assignment).toHaveAttribute('dir', 'ltr');
-  const runButton = assignment.getByRole('button');
+  const runButton = assignment.locator('[data-assignment-run="pointers-1"]');
   await expect(runButton).toBeVisible();
   await runButton.focus();
   await expect(runButton).toBeFocused();

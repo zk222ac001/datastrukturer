@@ -47,14 +47,22 @@
     const chapter = chapters[index];
     if (!chapter) return;
     const existing = content.querySelector('[data-structure-assignment]');
-    if (existing?.dataset.structureAssignment === String(index)) return;
+    if (existing?.dataset.structureAssignment === String(index)) {
+      const code = existing.querySelector('[data-structure-solution-code]');
+      const example = content.querySelector('.lower .card:nth-child(2) code')?.textContent;
+      if (code && example && code.textContent !== example) code.textContent = example;
+      return;
+    }
     existing?.remove();
     const panel = document.createElement('section');
     panel.className = 'card assignment-card';
     panel.dataset.structureAssignment = String(index);
     panel.lang = 'en';
     panel.dir = 'ltr';
-    panel.innerHTML = `<p class="eyebrow">Coding assignment · ${chapter.title}</p><h2>Task</h2><p>${chapter.task}</p><h3>Expected outcome</h3><pre class="code">${chapter.expected}</pre><button type="button" class="primary" data-structure-assignment-run="${index}">Open example in online editor →</button><p class="muted">Edit the example, run it in OneCompiler, and compare the result with this check. Instructions are in English.</p>`;
+    const example = content.querySelector('.lower .card:nth-child(2) code')?.textContent;
+    if (!example) throw new Error('Data structures assignment example code is missing.');
+    panel.innerHTML = `<p class="eyebrow">Coding assignment · ${chapter.title}</p><h2>Task</h2><p>${chapter.task}</p><h3>Expected outcome</h3><pre class="code">${chapter.expected}</pre><div class="controls"><button type="button" class="primary" data-structure-assignment-run="${index}">Open example in online editor →</button><button type="button" class="primary" data-structure-assignment-solution="${index}" aria-expanded="false" aria-controls="structure-solution-${index}">Solution of code</button></div><section class="assignment-solution" id="structure-solution-${index}" hidden><h3>Solution of code</h3><pre class="code"><code data-structure-solution-code></code></pre></section><p class="muted">Edit the example, run it in OneCompiler, and compare the result with this check. Instructions are in English.</p>`;
+    panel.querySelector('[data-structure-solution-code]').textContent = example;
     lower.insertAdjacentElement('afterend', panel);
   }
 
@@ -63,6 +71,17 @@
   new MutationObserver(enhance).observe(content, { childList: true, subtree: true });
   enhance();
   content.addEventListener('click', event => {
+    const solutionButton = event.target.closest('[data-structure-assignment-solution]');
+    if (solutionButton) {
+      const index = solutionButton.dataset.structureAssignmentSolution;
+      const panel = document.getElementById(`structure-solution-${index}`);
+      if (!panel) throw new Error('Data structures assignment solution panel is missing.');
+      const open = solutionButton.getAttribute('aria-expanded') !== 'true';
+      panel.hidden = !open;
+      solutionButton.setAttribute('aria-expanded', String(open));
+      solutionButton.textContent = open ? 'Hide solution' : 'Solution of code';
+      return;
+    }
     const button = event.target.closest('[data-structure-assignment-run]');
     if (!button) return;
     const chapter = chapters[Number(button.dataset.structureAssignmentRun)];
