@@ -1,0 +1,97 @@
+const { test, expect } = require('@playwright/test');
+test('array initialization, safe access, updates and traversal navigation', async ({ page }) => {
+  await page.goto('/index.html?lang=en&code=c#arrays');
+  await expect(page.locator('#arrays h2')).toHaveText('Arrays');
+  const root = page.locator('#arrays-explorer');
+  await expect(root.locator('.array-cell')).toHaveCount(5);
+  await root.locator('[data-array-index="2"]').click();
+  await expect(root.locator('#arrays-access-status')).toHaveText('values[2] = 12.');
+  await root.locator('[name=value]').fill('99');
+  await root.getByRole('button', { name: 'Update element' }).click();
+  await expect(root.locator('[data-array-index="2"] strong')).toHaveText('99');
+  await root.locator('[name=index]').fill('5');
+  await root.getByRole('button', { name: 'Read element' }).click();
+  await expect(root.locator('#arrays-access-status')).toContainText('undefined behavior');
+  await expect(root.locator('[data-array-index="2"] strong')).toHaveText('99');
+  for (let i = 0; i < 4; i++) await root.getByRole('button', { name: 'Next', exact: true }).click();
+  await expect(root.locator('.output')).toHaveText('4');
+  await root.getByRole('button', { name: 'Previous', exact: true }).click();
+  await expect(root.locator('.executing')).toHaveText('printf("%d\\n", values[i]);');
+  await root.getByRole('button', { name: 'Previous', exact: true }).click();
+  await expect(root.locator('.output')).toHaveText('(no output)');
+  await root.locator('#arrays-direction').selectOption('reverse');
+  for (let i = 0; i < 18; i++) await root.getByRole('button', { name: 'Next', exact: true }).click();
+  await expect(root.locator('.output')).toHaveText('20\n16\n99\n8\n4');
+  await expect(root.locator('#arrays-step-status')).toContainText('terminate');
+  await expect(root.getByRole('button', { name: 'Next', exact: true })).toBeDisabled();
+  await root.locator('#arrays-mode').selectOption('partial');
+  await expect(root.locator('[data-array-index="4"] strong')).toHaveText('0');
+  await expect(root.locator('.output')).toHaveText('(no output)');
+  await root.locator('#arrays-mode').selectOption('uninitialized');
+  await expect(root.locator('[data-array-index="4"] strong')).toHaveText('?');
+  await root.getByRole('button', { name: 'Read element' }).click();
+  await expect(root.locator('#arrays-access-status')).toContainText('uninitialized');
+  await expect(root.locator('[data-arrays-simulation-run]')).toBeDisabled();
+  await expect(root.getByRole('button', { name: 'Next', exact: true })).toBeDisabled();
+  await root.locator('[name=value]').fill('42');
+  await root.getByRole('button', { name: 'Update element' }).click();
+  await expect(root.locator('[data-array-index="0"] strong')).toHaveText('42');
+  await expect(root.locator('[data-array-index="1"] strong')).toHaveText('?');
+});
+test('array quiz and progress reuse the shared components without changing for-loop progress', async ({ page }) => {
+  await page.goto('/index.html?lang=en&code=c#arrays');
+  const quiz = page.locator('#arrays-quiz');
+  for (const [i, choice] of [0, 1, 3, 1, 2].entries()) await quiz.locator('fieldset').nth(i).locator('input').nth(choice).check();
+  await expect(quiz.locator('.quiz-score')).toContainText('5 / 5');
+  await page.locator('[data-arrays-complete]').click(); await page.reload();
+  await expect(page.locator('#arrays-progress')).toContainText('Best: 5/5');
+  await expect(page.locator('#arrays-progress')).toContainText('Lesson marked complete');
+  await page.goto('/index.html?lang=en&code=c#counter');
+  await expect(page.locator('#for-progress')).toContainText('No completed quiz yet');
+  await expect(page.locator('#for-progress')).toContainText('Lesson not yet marked complete');
+});
+test('arrays appear on the homepage and preserve six programming languages in ten locales', async ({ page }) => {
+  test.setTimeout(120000);
+  const errors = []; page.on('pageerror', e => errors.push(e.message));
+  for (const locale of ['da', 'en', 'es', 'fr', 'de', 'pt', 'ar', 'ur', 'hi', 'zh']) {
+    for (const code of ['c', 'cpp', 'python', 'java', 'javascript', 'csharp']) {
+      await page.goto(`/index.html?lang=${locale}&code=${code}`);
+      const link = page.locator('.cards a[href$="#arrays"]');
+      await expect(link).toHaveCount(1); await link.click();
+      await expect(page.locator('#arrays')).toBeVisible();
+      await expect(page.locator('#arrays-explorer')).toHaveCount(code === 'c' ? 1 : 0);
+      await expect(page.locator('#arrays-quiz')).toHaveCount(code === 'c' ? 1 : 0);
+      await expect(page.locator('#sidebar .nav-topic')).toHaveAttribute('aria-current', 'page');
+      await expect(page.locator('#sidebar [aria-current=page]')).toHaveCount(1);
+      if (locale !== 'en' || code !== 'c') await expect(page.locator('#arrays .notice')).toBeVisible();
+      await page.evaluate(() => { window.CodeRunner.open = p => { window.testArraysPayload = p; }; });
+      await page.locator('[data-arrays-example=run]').click();
+      expect(await page.evaluate(() => window.testArraysPayload.codeLanguage)).toBe(code);
+      const download = page.waitForEvent('download'); await page.locator('[data-arrays-example=download]').click();
+      expect((await download).suggestedFilename()).toBe({ c: 'arrays.c', cpp: 'arrays.cpp', python: 'arrays.py', java: 'Main.java', javascript: 'arrays.js', csharp: 'Program.cs' }[code]);
+    }
+  }
+  expect(errors).toEqual([]);
+});
+test('array lesson has clear RTL fallback, mobile layout and section routes', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto('/index.html?lang=ar&code=c#arrays');
+  await expect(page.locator('html')).toHaveAttribute('dir', 'rtl');
+  await expect(page.locator('.arrays-lesson')).toHaveAttribute('lang', 'en');
+  await expect(page.locator('.arrays-lesson')).toHaveAttribute('dir', 'ltr');
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+  await page.locator('.arrays-lesson nav').getByRole('link', { name: 'Quiz', exact: true }).click();
+  await expect(page.locator('#arrays-quiz')).toBeVisible();
+  expect(await page.evaluate(() => window.courseState().module)).toBe(1);
+});
+test('array solutions use existing editor and blocked storage falls back to session memory', async ({ page }) => {
+  await page.addInitScript(() => Object.defineProperty(window, 'localStorage', { get() { throw Error('blocked'); } }));
+  await page.goto('/index.html?lang=en&code=c#arrays');
+  await page.evaluate(() => { window.CodeRunner.open = p => { window.testArraysPayload = p; }; });
+  await page.locator('[data-arrays-starter]').first().click();
+  expect(await page.evaluate(() => window.testArraysPayload.code)).toContain('TODO');
+  await page.locator('[data-arrays-complete]').click();
+  await expect(page.locator('#arrays-progress')).toContainText('page session only');
+  await page.locator('.arrays-lesson nav').getByRole('link', { name: 'Learn', exact: true }).click();
+  await expect(page.locator('#arrays-progress')).toContainText('Lesson marked complete');
+});
