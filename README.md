@@ -45,7 +45,17 @@ CodeViz teaches general programming concepts through interactive examples in **C
 6. Data structures (interactive lessons)
 7. Arrays (standalone interactive lesson)
 
-The four core modules and the standalone Arrays lesson contain 30 topics and 150 complete source examples (25 per programming language). Existing explanations and the Arrays title/summary are available in Danish, English, Spanish, French, German, Portuguese, Arabic, Urdu, Hindi and Simplified Chinese. The detailed interactive Arrays lesson initially uses C and English, with an explicit language fallback. Arabic and Urdu use right-to-left prose; code remains left-to-right.
+The four core modules and the standalone Arrays lesson contain 31 topics and 156 complete source examples (26 per programming language). Existing explanations and the Arrays/Switch titles and summaries are available in Danish, English, Spanish, French, German, Portuguese, Arabic, Urdu, Hindi and Simplified Chinese. The detailed interactive Arrays lesson initially uses C and English; the Switch lesson uses English with the selected language's own syntax and behavior. English fallbacks are explicit. Arabic and Urdu use right-to-left prose; code remains left-to-right.
+
+## Switch statement lesson
+
+Open `index.html?lang=en&code=c#switch`, or select Switch statement from the homepage’s Program control structures list. The dedicated topic is inserted after selection as 3.8; Assignment follows as 3.9. Existing topic indices and URLs are retained, and Arrays remains the standalone entry 07.
+
+The lesson explains the selector, literal case labels, fallback, case exit, shared actions and common mistakes. A bounded educational simulation supports choices 0–3, Next/Previous/Reset, highlighted source, branch selection and output. Toggle the fallback or remove the break after case 1 to explore continuation into case 2 in C, C++, Java's traditional colon syntax, or JavaScript. Python uses Python 3.10+ match/case and no fall-through. C# retains a required case exit and does not offer the implicit fall-through toggle. Source, downloads and OneCompiler payloads always use the selected language; generated programs print a final `After selection` message to show that execution continues afterward.
+
+Five questions reuse the shared quiz engine with language-specific explanations. Completion and results are stored separately for each programming language, with session-memory fallback when storage is blocked. An editor exercise asks students to add a Settings action; expected output and a hint are provided for self-checking, without automatic grading.
+
+New files: `switch-core.js` (pure trace/source generator), `switch-data.js` (ten translated summaries and language-specific notes/references), `switch-lesson.js` (tutorial and interactions), `tests/switch.test.cjs`, `tests/native-program.cjs`, and `tests/browser/switch.spec.cjs`. Narrow edits to `course.js`, `course.css`, and the three course/reference HTML entry points add discovery, routing, topic counts and shared styling. `npm test` compares generated programs with model output in all six languages when the local toolchains are available, covering matching cases, unmatched/default/no-default paths, and supported fall-through. Browser checks cover all 60 locale/programming-language combinations, downloads/editor payloads, quiz/progress separation, mobile RTL, navigation and the existing lessons.
 
 ## Arrays lesson
 
