@@ -1,0 +1,115 @@
+'use strict';
+(() => {
+  const rows = [
+    ['computers', 'Build a tiny input-process-output program: keep the number 6 in a variable, calculate its square, and print both values.', 'Input: 6\nSquare: 36'],
+    ['libraries', 'Use your language’s standard math library to calculate the square root of 81 and print the result.', 'Square root: 9'],
+    ['ai', 'Create a simple rule-based classifier for two temperatures: print “cold” below 15 and “warm” otherwise. State in a code comment that this is a rule, not a trained AI model.', '12: cold\n20: warm'],
+    ['embedded', 'Simulate a temperature sensor reading of 32. Turn a fan on at 30 or above and off below 30.', 'Temperature: 32\nFan: ON'],
+    ['bigdata', 'Store the readings 12, 15, 11, and 18, then calculate their count, total, and average.', 'Count: 4\nTotal: 56\nAverage: 14'],
+    ['run', 'Write and run a complete program that prints the two lines shown. Keep the output free of extra text.', 'CodeViz\nProgram ready'],
+    ['hello', 'Store the name Ada in a variable and use it to print a personalized greeting.', 'Hello, Ada!'],
+    ['formatting', 'Format a price value of 12.5 to exactly two digits after the decimal point.', 'Price: 12.50'],
+    ['types', 'Create an integer age and a single-character grade, then print them with clear labels.', 'Age: 20\nGrade: A'],
+    ['variables', 'Swap the values in two variables without losing either original value.', 'Before: 3, 8\nAfter: 8, 3'],
+    ['memory', 'Create a score variable, print it, change its value from 10 to 15, and print it again. Explain in a code comment which variable is being updated.', 'Before: 10\nAfter: 15'],
+    ['io', 'Read one integer from standard input and print twice its value. Try the input 5 in the online editor.', 'Input: 5\nDouble: 10', '5\n'],
+    ['decisions', 'Classify the score 72: print “pass” for scores of at least 60 and “try again” otherwise.', 'Score: 72\nResult: pass'],
+    ['arithmetic', 'Calculate and print the area and perimeter of a rectangle with width 4 and height 7.', 'Area: 28\nPerimeter: 22'],
+    ['precedence', 'Evaluate both 3 + 4 * 2 and (3 + 4) * 2, then print each result on its own labeled line.', 'Without parentheses: 11\nWith parentheses: 14'],
+    ['relational', 'Compare 7 and 5 using equality and greater-than checks. Print a clear result for each comparison.', '7 equals 5: false\n7 is greater than 5: true'],
+    ['logic', 'Check whether 2024 is a leap year using logical operators and print the result. A leap year is divisible by 4, except century years unless also divisible by 400.', '2024 is a leap year: true'],
+    ['truth', 'Print the result of AND for all four pairs of Boolean inputs: false/false, false/true, true/false, true/true.', 'The AND result is true only for the final pair; the other three results are false.'],
+    ['algorithm', 'Find the smallest value in the fixed list 8, 3, 11, 2, 6 without using a built-in sort.', 'Smallest value: 2'],
+    ['pseudocode', 'Translate this plan into working code: start total at 0, add 2, 4, and 6, then print total.', 'Total: 12'],
+    ['flowchart', 'Implement a simple decision flow: start with 9; if it is odd print “odd”, otherwise print “even”.', '9 is odd'],
+    ['selection', 'Assign a letter grade for score 85 using A for 90+, B for 80–89, C for 70–79, and F otherwise.', 'Score: 85\nGrade: B'],
+    ['switch', 'Use a switch/match-style selection to turn menu choice 2 into the operation “Save”. Include a default message for unknown choices.', 'Choice: 2\nOperation: Save'],
+    ['assignment', 'Start balance at 10, apply a deposit of 5 with a compound assignment operator, and print the updated balance.', 'Balance: 15'],
+    ['iteration', 'Use a loop to print the numbers 1 through 5 in ascending order, one per line.', '1\n2\n3\n4\n5'],
+    ['counter', 'Use a counter-controlled loop to add the integers 1 through 10 and print the final count and sum.', 'Count: 10\nSum: 55'],
+    ['sentinel', 'Process the fixed sequence 3, 4, 0. Add values until the sentinel 0 appears; do not include the sentinel in the sum.', 'Sum before sentinel: 7'],
+    ['jump', 'Loop from 1 through 12, skip multiples of 3, and stop once the value passes 10.', '1 2 4 5 7 8 10'],
+    ['increment', 'Start a counter at 4, increment it three times, and print its value after every increment.', '5\n6\n7'],
+    ['loops', 'Calculate 5 factorial with a loop (5 × 4 × 3 × 2 × 1). Do not hard-code the final answer.', '5! = 120'],
+
+    ['arrays', 'Use an array containing 4, 8, 2, and 10. Traverse it once to find the maximum and calculate the average.', 'Maximum: 10\nAverage: 6'],
+    ['arrays-simulation', 'In the array simulation, change index 2 to 99, then trace the full array from index 0 to its last valid index.', 'The third cell changes; traversal visits exactly five valid indexes and never reads index 5.'],
+    ['arrays-tutorial', 'Write a program that initializes five integer readings, prints each with its index, and calculates the total using a loop.', 'Five indexed readings are printed; the total equals the sum of the values you initialized.'],
+    ['arrays-practice', 'Complete the array exercise to find a requested value. Test both a value that exists and one that is absent.', 'Found input reports its valid index; absent input reports “not found” without an out-of-range read.'],
+    ['functions', 'Write a function that accepts two numbers and returns their average. Call it with 8 and 12.', 'Average: 10'],
+    ['functions-1', 'Create a function named greet that accepts a name and returns or prints a greeting. Call it for Ada.', 'Hello, Ada!'],
+    ['functions-2', 'Define a small function before it is used (and add a declaration/prototype first where the language requires one). Call it with 3 and 4.', 'Sum: 7'],
+    ['functions-3', 'Write a function that calls a second function. Print a message when each function starts and returns so the call order is visible.', 'The called function starts after its caller and returns before the caller finishes.'],
+    ['functions-4', 'Pass a score to a function that changes the caller’s value to 100, using the selected language’s supported pointer, reference, or mutable-object technique.', 'The caller prints the updated value: 100.'],
+    ['functions-5', 'Generate one pseudo-random integer in the inclusive range 1–6. Check the range rather than expecting a fixed roll.', 'The generated value is always between 1 and 6 inclusive.'],
+    ['functions-6', 'Create a function-local variable and a longer-lived value, then print each while it is valid. Do not return a pointer/reference to a local variable.', 'The local value is used inside its lifetime; the longer-lived value remains available afterward.'],
+    ['functions-7', 'Create a local variable with the same name as a global or outer variable. Print both values using the correct scope.', 'The local and outer values remain distinct and each print shows the value from its scope.'],
+    ['functions-8', 'Write a recursive factorial function with a base case and calculate factorial(5).', 'factorial(5) = 120'],
+    ['pointers', 'Swap two integer values through the selected language’s pointer/reference mechanism. In C, pass both addresses to a function.', 'Before: 3, 8\nAfter: 8, 3'],
+    ['pointers-1', 'Create an integer and a pointer/reference to it. Read the object through the pointer/reference, then change the object through it.', 'The read shows the original value; the later read shows the updated value.'],
+    ['pointers-2', 'Initialize a pointer to a live integer before dereferencing it. Also create a null pointer and check it before use.', 'The initialized pointer safely reads the integer; the null pointer is reported as empty and is never dereferenced.'],
+    ['pointers-3', 'Write a function that changes a caller-owned integer to 30 through an address/reference parameter.', 'The caller prints 30 after the function returns.'],
+    ['pointers-4', 'Traverse three array elements through a pointer or pointer-compatible indexing, and print each value exactly once.', '10\n20\n30'],
+    ['pointers-5', 'In C, allocate space for three integers, check allocation before access, initialize and sum them, then free the allocation exactly once.', 'The sum is correct; allocation failure is handled before access, and allocated memory is released.'],
+    ['pointers-simulation', 'Step through a pointer changing from one live integer to another. Update one target through the pointer and show which object changes.', 'Only the object currently designated by the pointer changes.'],
+    ['pointers-practice', 'Finish the pointer challenge and test normal values, equal values, and a null-pointer guard where applicable.', 'The result is correct for each valid case, and invalid/null input is rejected before dereferencing.'],
+    ['oop', 'Create a small BankAccount class with a balance and a deposit operation. Deposit 25 into an initial balance of 100.', 'Balance: 125'],
+    ['oop-1', 'Define a Book class with a title field and create two distinct Book objects with different titles.', 'Book 1: Dune\nBook 2: Solaris'],
+    ['oop-2', 'Create a class that exposes a simple “start” operation while keeping its internal steps behind that operation.', 'Calling start prints “Started” without requiring the caller to invoke internal steps.'],
+    ['oop-3', 'Encapsulate a bank balance so it cannot be changed directly. Add a deposit method and print the balance after depositing 25.', 'Balance: 125'],
+    ['oop-4', 'Give a class a constructor that accepts a name and use it to create an object named Ada.', 'Name: Ada'],
+    ['oop-5', 'Create a base class Animal and a derived class Dog. Reuse a shared name property and print the Dog’s name.', 'Animal: Milo'],
+    ['oop-6', 'Implement the same speak operation for two different classes and call it through a shared interface/base type.', 'The two objects produce their own distinct speak results.'],
+    ['oop-7', 'Demonstrate public and restricted class data using the access rules supported by your language. Do not claim that a naming convention is compiler-enforced privacy.', 'Public data is accessible; restricted data is accessed only through the class’s permitted interface.'],
+    ['oop-public', 'Expose one public method that returns a safe summary of an object, then call it from outside the class.', 'The public method returns the expected summary.'],
+    ['oop-private', 'Keep a field private (or use the closest supported convention) and change it only through a validated method.', 'Valid updates succeed; an invalid update leaves the field unchanged.'],
+    ['oop-protected', 'Create a base class with a protected value and show a derived class using it without exposing it as public.', 'The derived class can use the protected value; unrelated code cannot access it directly where enforced.'],
+    ['oop-guidance', 'Combine a class, constructor, encapsulated state, and one public operation in a tiny program.', 'A constructed object responds to the operation and displays a valid state.'],
+    ['oop-practice', 'Complete the OOP exercise by creating two objects and showing that changing one object does not change the other.', 'Each object retains its own independent state.'],
+    ['file-handling', 'Write the text “CodeViz notes” to a temporary file, close it, read it back, and print the contents.', 'CodeViz notes'],
+    ['file-handling-1', 'Open a temporary text file using your language’s file API, write one line, close it, and report success.', 'The file operation completes and reports success.'],
+    ['file-handling-2', 'Write two lines to a temporary text file and confirm the file contains both lines in order.', 'First line\nSecond line'],
+    ['file-handling-3', 'Read a temporary text file line by line and print each line without adding blank lines.', 'Each stored line appears once and in its original order.'],
+    ['file-handling-4', 'Wrap file reading in a small class or helper object that owns the filename and provides a read operation.', 'Calling the object’s read operation returns and prints the stored text.'],
+    ['file-handling-safety', 'Handle a missing-file error explicitly and ensure the file resource is closed/disposed on both success and failure.', 'Missing input produces a clear handled message; no uncaught error or leaked open file remains.'],
+    ['file-handling-practice', 'Complete the file exercise: save a short note, reopen it, and verify the exact text before reporting success.', 'The verification passes only when the text read back matches the text written.'],
+    ['exception-handling', 'Convert the fixed text “not-a-number” to an integer inside an exception handler and print a friendly recovery message.', 'Invalid number handled'],
+    ['exception-handling-1', 'Trigger one predictable invalid conversion and distinguish the resulting exception from a syntax/compile error.', 'The invalid conversion is identified as a runtime error/exception.'],
+    ['exception-handling-2', 'Raise/throw a clear error when a function receives a negative age, then show that it propagates to a caller.', 'The caller receives and identifies the negative-age error.'],
+    ['exception-handling-3', 'Catch a predictable invalid input, print a useful message, and continue to print “Program continues”.', 'Invalid input handled\nProgram continues'],
+    ['exception-handling-4', 'Use the language’s cleanup construct to release or close a resource whether the operation succeeds or fails.', 'Cleanup runs on both success and failure paths.'],
+    ['exception-handling-practice', 'Complete the exception exercise with one valid input and one invalid input. Handle only the expected error.', 'Valid input succeeds; invalid input is reported clearly without hiding unrelated errors.'],
+    ['unit-testing', 'Write a pure isEven function and add passing tests for 4, 5, and 0. Keep test assertions separate from the function.', 'All three tests pass; 4 and 0 are even and 5 is odd.'],
+    ['unit-testing-1', 'Write one automated test for a function that doubles its input. Make the test fail if the result is incorrect.', 'Input 6 produces 12 and the assertion passes.'],
+    ['unit-testing-2', 'Write one test with explicit Arrange, Act, and Assert steps for adding 3 and 4.', 'The assertion verifies that the result is 7.'],
+    ['unit-testing-3', 'Add tests for a normal value, a boundary value of zero, and a negative value. Each test must assert an expected result.', 'Every case has a meaningful assertion and the suite reports all cases.'],
+    ['unit-testing-4', 'Replace a real external dependency with a small stub that returns a known response, then test how your function handles it.', 'The function uses the prepared response and the test makes no network request.'],
+    ['unit-testing-5', 'Write two independent tests that can run in either order and use descriptive names based on behavior, not implementation details.', 'Both tests pass in either order and clearly identify what behavior they verify.'],
+    ['unit-testing-practice', 'Deliberately change one expected value, run the tests, and then restore it. Observe the failing test before restoring the correct expectation.', 'The incorrect expectation fails; restoring the correct one makes the suite pass again.']
+  ];
+
+  const labels = {
+    da: ['Kodeopgave', 'Opgave', 'Forventet resultat', 'Åbn startkode i online-editor'],
+    en: ['Coding assignment', 'Task', 'Expected outcome', 'Open starter in online editor'],
+    es: ['Reto de programación', 'Tarea', 'Resultado esperado', 'Abrir código inicial en el editor'],
+    fr: ['Exercice de programmation', 'Consigne', 'Résultat attendu', 'Ouvrir le code de départ dans l’éditeur'],
+    de: ['Programmieraufgabe', 'Aufgabe', 'Erwartetes Ergebnis', 'Startcode im Online-Editor öffnen'],
+    pt: ['Desafio de programação', 'Tarefa', 'Resultado esperado', 'Abrir código inicial no editor'],
+    ar: ['مهمة برمجية', 'المهمة', 'النتيجة المتوقعة', 'فتح الكود الأولي في المحرر'],
+    ur: ['پروگرامنگ اسائنمنٹ', 'کام', 'متوقع نتیجہ', 'ابتدائی کوڈ آن لائن ایڈیٹر میں کھولیں'],
+    hi: ['प्रोग्रामिंग असाइनमेंट', 'कार्य', 'अपेक्षित परिणाम', 'स्टार्टर कोड ऑनलाइन एडिटर में खोलें'],
+    zh: ['编程练习', '任务', '预期结果', '在在线编辑器中打开起始代码']
+  };
+
+  window.LESSON_ASSIGNMENTS = Object.freeze(Object.fromEntries(
+    rows.map(([id, task, expected, stdin = '']) => [id, Object.freeze({ task, expected, stdin })])
+  ));
+  window.LESSON_ASSIGNMENT_LABELS = Object.freeze(Object.fromEntries(
+    Object.entries(labels).map(([language, values]) => [language, Object.freeze({
+      title: values[0], task: values[1], expected: values[2], open: values[3],
+      note: language === 'en'
+        ? 'Edit the starter, run it in OneCompiler, and compare the result with this check.'
+        : 'Assignment instructions and expected outcomes are in English.'
+    })])
+  ));
+})();
